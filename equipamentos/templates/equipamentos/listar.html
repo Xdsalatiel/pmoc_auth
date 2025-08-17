@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Lista de Equipamentos</h2>
+<a href="{% url 'adicionar_equipamento' %}" class="btn btn-primary mb-3">Adicionar</a>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th><th>Marca</th><th>Modelo</th><th>Localização</th><th>Última Manutenção</th><th>Ações</th>
+    </tr>
+    {% for eq in equipamentos %}
+    <tr>
+        <td>{{ eq.id }}</td>
+        <td>{{ eq.marca }}</td>
+        <td>{{ eq.modelo }}</td>
+        <td>{{ eq.localizacao }}</td>
+        <td>{{ eq.ultima_manutencao }}</td>
+        <td>
+            <a href="{% url 'editar_equipamento' eq.id %}" class="btn btn-sm btn-warning">Editar</a>
+            <a href="{% url 'remover_equipamento' eq.id %}" class="btn btn-sm btn-danger">Remover</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
